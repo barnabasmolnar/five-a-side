@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soproni kispályás bajnokság őszi és tavaszi tabellák</title>
+    <link rel="stylesheet" href="bs4-charming.css">
+    
+    <style>
+        .period {
+            background-color: #212529;
+            padding: 1rem .75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: .875rem;
+        }
+        
+        .custom-nav-link {
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: .875rem;
+        }
+
+        .navbar-container {
+            padding-left: 15px !important;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body class="bg-light">
+    <nav id="top" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container navbar-container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navBarToggler"
+                aria-controls="navBarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kispálya</a>
+        
+            <div class="collapse navbar-collapse" id="navBarToggler">
+                <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                    <li class="mx-2 nav-item">
+                        <a class="nav-link text-uppercase custom-nav-link" href="#autumn">Ősz</a>
+                    </li>
+                    <li class="mx-2 nav-item">
+                        <a class="nav-link text-uppercase custom-nav-link" href="#spring">Tavasz</a>
+                    </li>
+                    <li class="mx-2 nav-item">
+                        <a class="nav-link text-uppercase custom-nav-link" href="#final">Összesített</a>
+                    </li>
+                    <li class="mx-2 nav-item">
+                        <a class="nav-link text-uppercase custom-nav-link" href="#epk-goals">Gólszerzők</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="app">
+            <div id="autumn" class="mt-5 text-white text-uppercase period">Őszi tabella</div>
+            <div class="bg-white table-responsive">
+                <table class="table table-hover table-striped autumn-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pos</th>
+                            <th>Team</th>
+                            <th>Pld</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(team, idx) in autumnTable" :class="{ 'bg-success text-white': team.team === 'EPK' }">
+                            <th scope="row">{{idx + 1}}.</th>
+                            <td>{{ team.team }}</td>
+                            <td>16</td>
+                            <td>{{ team.autumnWins }}</td>
+                            <td>{{ team.autumnDraws }}</td>
+                            <td>{{ team.autumnLosses }}</td>
+                            <td>{{ team.autumnGD }}</td>
+                            <td>{{ team.autumnPts }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="spring" class="mt-5 text-white text-uppercase period">Tavaszi tabella</div>
+            <div class="bg-white table-responsive">
+                <table class="table table-hover table-striped spring-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pos</th>
+                            <th>Team</th>
+                            <th>Pld</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(team, idx) in springTable" :class="{ 'bg-success text-white': team.team === 'EPK' }">
+                            <th scope="row">{{idx + 1}}.</th>
+                            <td>{{ team.team }}</td>
+                            <td>16</td>
+                            <td>{{ team.springWins }}</td>
+                            <td>{{ team.springDraws }}</td>
+                            <td>{{ team.springLosses }}</td>
+                            <td>{{ team.springGD }}</td>
+                            <td>{{ team.springPts }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="final" class="mt-5 text-white text-uppercase period">Összesített tabella</div>
+            <div class="bg-white table-responsive">
+                <table class="table table-hover table-striped spring-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pos</th>
+                            <th>Team</th>
+                            <th>Pld</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(team, idx) in finalTable" :class="{ 'bg-success text-white': team.team === 'EPK' }">
+                            <th scope="row">{{idx + 1}}.</th>
+                            <td>{{ team.team }}</td>
+                            <td>32</td>
+                            <td>{{ team.finalWins }}</td>
+                            <td>{{ team.finalDraws }}</td>
+                            <td>{{ team.finalLosses }}</td>
+                            <td>{{ team.finalGD }}</td>
+                            <td>{{ team.finalPts }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="epk-goals" class="mt-5 text-white text-uppercase period">EPK gólszerzők</div>
+            <div class="bg-white table-responsive">
+                <table class="table table-hover table-striped spring-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pos</th>
+                            <th>Name</th>
+                            <th>Goals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(player, idx) in epkGoalScorers">
+                            <th scope="row">{{idx + 1}}.</th>
+                            <td>{{ player.playerName }}</td>
+                            <td>{{ player.playerGoals }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+</html>
