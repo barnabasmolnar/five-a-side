@@ -15,7 +15,7 @@ Take for instance, our team: http://www.kispalyasopron.hu/csapat/881. As can be 
 We need to get this data and process it somehow. This is done via web-scraping. Once that's done, displaying the processed data is fairly trivial.
 
 ## Server side
----
+
 This is where we scrape the relevant data.
 As already seen, match results are readily available for all teams. But first, we need a list of the participating teams and we need to know their respective URLs where this data is available as well.
 
@@ -41,7 +41,7 @@ To generate an output.json, just:
 * node app.js
 
 ## Client side
----
+
 On the client side, we use Vue.js to process and display the contents of this output.json file.
 
 Goalscorers have also been added for our team, just to make this a nice little complete package.
@@ -61,7 +61,7 @@ const playerGoals = players.map(player => ({
 Sorting and appending it to the vue data object was fairly trivial.
 
 ## Live demo:
----
+
 A live, working demo can be found here:
 
 http://barnabas.uw.hu/kispalya/index.html
